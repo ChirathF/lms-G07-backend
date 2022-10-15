@@ -12,18 +12,16 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     Optional<User> findByUsername(String s);
 
-    List<User> findByRole(String role);
+    List<User> findByRoles(String roles);
 
     User save(User user);
 
-    User editById(String id);
+//    User editById(String id);
 
 //    User deleteById(String id);
 
-    User changePassword(String id);
-
-    User reserveBook(String isbn);
+//    User changePassword(String id);
 
 
-    Boolean existsByUsername(String username);
+
 }

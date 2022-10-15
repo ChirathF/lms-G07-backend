@@ -15,32 +15,18 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private BookRepository bookRepository;
 
-    public List<User> displayByRole(@PathVariable String role){
-        return userRepository.findByRole(role);
+    public List<User> displayByRole(@PathVariable String roles){
+        return userRepository.findByRoles(roles);
     }
 
     public User addUser(@RequestBody User user){
         return userRepository.save(user);
     }
 
-    public User editById(@PathVariable String id){
-        return userRepository.editById(id);
-    }
-//    public String deleteUserById(@PathVariable String id){
-//        userRepository.deleteById(id);
-//        return "User Deleted Successfully";
+//    public User editById(@PathVariable String id){
+//        return userRepository.editById(id);
 //    }
-
-    public User changePasswordByID(@PathVariable String id){
-        return userRepository.changePassword(id);
-    }
-
-    public User reserveBookByIsbn(@PathVariable String isbn){
-        return userRepository.reserveBook(isbn);
-    }
 
 
 

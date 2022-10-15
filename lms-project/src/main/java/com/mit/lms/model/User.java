@@ -19,8 +19,8 @@ public class User {
 
     @Id
     private String id;
-    private  String fname;
-    private  String lname;
+    private  String fName;
+    private  String lName;
     private int number;
     private String email;
     private String address;
@@ -33,10 +33,10 @@ public class User {
 
     public User(){}
 
-    public User(String id, String fname, String lname, int number, String email, String address, String username, String password, Set<String> roles) {
+    public User(String id, String fName, String lName, int number, String email, String address, String username, String password, Set<String> roles) {
         this.id = id;
-        this.fname = fname;
-        this.lname = lname;
+        this.fName = fName;
+        this.lName = lName;
         this.number = number;
         this.email = email;
         this.address = address;

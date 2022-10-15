@@ -8,17 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private BookService bookService;
-
-
 
 
     @GetMapping("/home")
@@ -34,9 +30,9 @@ public class UserController {
 
 
     @GetMapping("/dashboard/member/view/{role}")
-    public List<User> viewMember(@PathVariable String role){
+    public List<User> viewMember(@PathVariable String roles){
 
-        return userService.displayByRole(role) ;
+        return userService.displayByRole(roles) ;
     }
 
     @PostMapping("/dashboard/member/add")
@@ -45,11 +41,11 @@ public class UserController {
         return userService.addUser(user);
     }
 
-    @PostMapping("/dashboard/member/edit/{id}")
-    public User editMember(@PathVariable String isbn){
-
-        return userService.editById(isbn);
-    }
+//    @PostMapping("/dashboard/member/edit/{id}")
+//    public User editMember(@PathVariable String isbn){
+//
+//        return userService.editById(isbn);
+//    }
 
     @DeleteMapping("/dashboard/member/delete/{id}")
     public String deleteMember(String isbn){
@@ -57,16 +53,9 @@ public class UserController {
         return "delete Member";
     }
 
-    @PostMapping("/home/password/{id}")
-    public String changePassword(String id){
 
-        return "change password";
-    }
 
-    @PostMapping("/home/reserve/{isbn}")
-    public String reserveBookByID(String isbn){
-        return "reserve book";
-    }
+
 
 
 
