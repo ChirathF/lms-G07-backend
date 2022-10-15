@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -16,17 +17,26 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> displayByRole(@PathVariable String roles){
+    public List<User> displayUserByRole(@PathVariable String roles){
+
         return userRepository.findByRoles(roles);
     }
 
+    public Optional<User> viewUserById(@PathVariable String id){
+        return userRepository.findById (id);
+    }
+
     public User addUser(@RequestBody User user){
+
         return userRepository.save(user);
     }
 
-//    public User editById(@PathVariable String id){
-//        return userRepository.editById(id);
-//    }
+    public User updateUser(User user, String id){
+        user.setId (id);
+        return userRepository.save(user);
+    }
+
+
 
 
 

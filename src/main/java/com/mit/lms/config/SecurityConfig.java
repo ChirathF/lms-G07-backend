@@ -48,9 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/signin/**").permitAll()
-                .antMatchers("/api/home/**").permitAll()
-                .antMatchers("/api/dashboard").hasAnyAuthority("ADMIN")
+                .authorizeRequests().antMatchers("/lms/signin/**").permitAll()
+                .antMatchers("/lms/lec/**").hasAnyAuthority("LECTURER")
+                .antMatchers("/lms/stu/**").hasAnyAuthority("STUDENT")
+                .antMatchers("/lms/dashboard").hasAnyAuthority("ADMIN")
 
                 .anyRequest().authenticated();
         http.addFilterBefore(authTokenFilter(),UsernamePasswordAuthenticationFilter.class);
