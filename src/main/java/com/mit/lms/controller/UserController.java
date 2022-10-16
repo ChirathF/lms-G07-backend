@@ -2,55 +2,66 @@ package com.mit.lms.controller;
 
 
 import com.mit.lms.model.User;
+import com.mit.lms.request.UserCreatesRequest;
+import com.mit.lms.response.UserCreatesResponse;
 import com.mit.lms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/lms")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
 
-    @GetMapping("/home")
-    public String viewHome(){
-        return "This is home page";
+    @GetMapping("/lec")
+    public String viewLecHome(){
+        return "This is lecturer home page";
+    }
+    @GetMapping("/stu")
+    public String viewStuHome(){
+        return "This is student home page";
     }
 
     @GetMapping("/dashboard")
     public String viewDashboard(){
 
-        return "This is dashboards page";
+        return "This is admin dashboard page";
     }
 
 
-    @GetMapping("/dashboard/member/view/{role}")
-    public List<User> viewMember(@PathVariable String roles){
-
-        return userService.displayByRole(roles) ;
+    @GetMapping("/dashboard/user")
+    public List<User> viewAllUsers(){
+        return userService.displayAllUsers() ;
     }
 
-    @PostMapping("/dashboard/member/add")
-    public User addMember(@RequestBody User user){
+    @GetMapping("/dashboard/user/{id}")
+    public Optional<User> viewUserById(@PathVariable String id){
+        return userService.viewUserById (id) ;
+    }
 
+
+    @PostMapping("/dashboard/user/add")
+    public UserCreatesResponse addUser(@RequestBody UserCreatesRequest user){
         return userService.addUser(user);
     }
 
-//    @PostMapping("/dashboard/member/edit/{id}")
-//    public User editMember(@PathVariable String isbn){
-//
-//        return userService.editById(isbn);
-//    }
+    @PutMapping("/dashboard/user/update/{id}")
+    public User updateUser(@RequestBody User user, @PathVariable String id){
+        return userService.updateUser(user, id);
+    }
 
-    @DeleteMapping("/dashboard/member/delete/{id}")
-    public String deleteMember(String isbn){
 
-        return "delete Member";
+    @DeleteMapping("/dashboard/user/delete/{id}")
+    public String deleteUser(@PathVariable String id){
+
+        return userService.deleteUserById (id);
     }
 
 
