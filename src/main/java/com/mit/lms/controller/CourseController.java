@@ -10,28 +10,29 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/lms/lec")
+@RequestMapping("/lms/lec/course")
 public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @GetMapping("course/{lecturerId}")
+    @GetMapping("/{lecturerId}")
     public List<Course> viewByLecId(String lecturerId){
         return courseService.viewByLecId (lecturerId);
     }
-    @PostMapping("course/add")
+
+    @PostMapping("/add")
     public Course addCourse(@RequestBody Course course){
         return courseService.addCourse (course);
     }
-    @GetMapping("course/{courseId}")
-    public Optional<Course> viewById(@PathVariable String courseId){
-        return courseService.viewByCourseId (courseId);
-    }
-    @PutMapping("course/update/{courseId}")
+//    @GetMapping("/{courseId}")
+//    public Optional<Course> viewById(@PathVariable String courseId){
+//        return courseService.viewByCourseId (courseId);
+//    }
+    @PutMapping("/update/{courseId}")
     public Course updateCourse(@RequestBody Course course, @PathVariable String courseId){
         return courseService.updateCourse (course, courseId);
     }
-    @DeleteMapping("course/delete/{courseId}")
+    @DeleteMapping("/delete/{courseId}")
     public String deleteCourse(@PathVariable String courseId){
         return courseService.deleteCourseById (courseId);
     }

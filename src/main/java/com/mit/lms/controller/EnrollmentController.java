@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/enrollment")
+@RequestMapping("/lms/stu/enrollment/")
 public class EnrollmentController {
 
     @Autowired

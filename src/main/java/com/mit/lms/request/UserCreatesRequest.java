@@ -1,22 +1,17 @@
-package com.mit.lms.model;
+package com.mit.lms.request;
 
-
-import lombok.*;
-import org.springframework.boot.convert.DataSizeUnit;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
 @ToString
-@Document (collection= "user")
-public class User {
-
+public class UserCreatesRequest {
     @Id
     private String id;
     private  String fname;
@@ -25,15 +20,16 @@ public class User {
 
     private String email;
     private String address;
+
+
     private String username;
 
     private String password;
-    private Set<String> roles = new HashSet<>();
+    private Set<String> roles = new HashSet<> ();
 
-    public User(){}
+    public UserCreatesRequest(){}
 
-    public User(String fname, String lname, int number, String email, String address, String username, String password, Set<String> roles) {
-
+    public UserCreatesRequest(String fname, String lname, int number, String email, String address, String username, String password, Set<String> roles) {
         this.fname = fname;
         this.lname = lname;
         this.number = number;
@@ -44,13 +40,13 @@ public class User {
         this.roles = roles;
     }
 
-    public User(String username, String password){
+    public UserCreatesRequest(String username, String password){
         this.username = username;
         this.password = password;
 
     }
 
-    public User(String id) {
+    public UserCreatesRequest(String id) {
         this.id = id;
     }
 }

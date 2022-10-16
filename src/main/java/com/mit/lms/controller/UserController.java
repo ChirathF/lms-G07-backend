@@ -2,6 +2,8 @@ package com.mit.lms.controller;
 
 
 import com.mit.lms.model.User;
+import com.mit.lms.request.UserCreatesRequest;
+import com.mit.lms.response.UserCreatesResponse;
 import com.mit.lms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,9 +36,9 @@ public class UserController {
     }
 
 
-    @GetMapping("/dashboard/user/{role}")
-    public List<User> viewUserByRole(@PathVariable String roles){
-        return userService.displayUserByRole(roles) ;
+    @GetMapping("/dashboard/user")
+    public List<User> viewAllUsers(){
+        return userService.displayAllUsers() ;
     }
 
     @GetMapping("/dashboard/user/{id}")
@@ -46,7 +48,7 @@ public class UserController {
 
 
     @PostMapping("/dashboard/user/add")
-    public User addUser(@RequestBody User user){
+    public UserCreatesResponse addUser(@RequestBody UserCreatesRequest user){
         return userService.addUser(user);
     }
 
@@ -57,9 +59,9 @@ public class UserController {
 
 
     @DeleteMapping("/dashboard/user/delete/{id}")
-    public String deleteMember(String isbn){
+    public String deleteUser(@PathVariable String id){
 
-        return "delete Member";
+        return userService.deleteUserById (id);
     }
 
 
