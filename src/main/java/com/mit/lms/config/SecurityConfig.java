@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/lms/signin/**").permitAll()
                 .antMatchers("/lms/lec/**").hasAnyAuthority("LECTURER")
                 .antMatchers("/lms/stu/**").hasAnyAuthority("STUDENT")
-                .antMatchers("/lms/dashboard").hasAnyAuthority("ADMIN")
+                .antMatchers("/lms/dashboard/**").hasAnyAuthority("ADMIN")
 
                 .anyRequest().authenticated();
         http.addFilterBefore(authTokenFilter(),UsernamePasswordAuthenticationFilter.class);
